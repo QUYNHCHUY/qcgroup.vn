@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GIAO DIỆN TỔNG HỢP</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      font-size: 2rem;
+    }
+    .section-box {
+      background-color: #fff;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Menu  */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      font-size: 18px;
+    }
+    .dropdown button {
+      background-color: #3498db;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .dropdown button:hover {
+      background-color: #2980b9;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 180px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      border-bottom: 1px solid #ddd;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, padding-left 0.3s ease;
+    }
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+      padding-left: 20px;
+    }
+
+    /* Bảng  */
+    .table-container {
+      overflow-x: auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border: 1px solid #ddd;
+      background-color: #fafafa;
+    }
+    th {
+      background-color: #44444c;
+      color: white;
+      font-weight: bold;
+    }
+    td {
+      background-color: #fff;
+    }
+    tr:nth-child(even) td {
+      background-color: #f4f4f4;
+    }
+    table th, table td {
+      border-radius: 6px;
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 600px) {
+      table, th, td {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <head>
+        <h1>Website tổng hợp!</h1>
+    </head>
+
+    <!-- Menu  -->
+  <!-- Menu -->
+<div class="dropdown">
+  <button>Menu</button>
+  <div class="dropdown-content">
+    <a href="#" onclick="showMenuContent('home')">Trang chủ</a>
+    <a href="#" onclick="showMenuContent('about')">Giới thiệu</a>
+    <a href="#" onclick="showMenuContent('contact')">Liên hệ</a>
+  </div>
+</div>
+
+<!-- Vùng hiển thị nội dung menu động -->
+<div id="menu-content" class="section-box" style="display:none; margin-top: 20px;"></div>
+
+
+    <div class="section-box">
+        <h2>Hình ảnh SVG (Vector)</h2>
+        <svg width="100" height="100">
+          <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="green" />
+        </svg>
+        <p>Hình tròn SVG với tâm tại (50,50), bán kính 40px, viền đen, nền xanh lá.</p>
+      </div>
+    
+      <!-- Bảng -->
+      <div class="section-box">
+        <h2>Bảng Responsive</h2>
+        <div class="table-container">
+          <table>
+            <tr><th>Tên</th><th>Tuổi</th></tr>
+            <tr><td>Chi</td><td>22</td></tr>
+            <tr><td>Bông</td><td>1</td></tr>
+            <tr><td>Bim</td><td>5</td></tr>
+          </table>
+        </div>
+      </div>
+    
+      <!-- JavaScript Tương Tác -->
+      <div class="section-box">
+        <h2>JavaScript – Tương tác</h2>
+        <p id="demo"></p>
+        <script>
+          document.getElementById("demo").innerHTML = "Chào mừng bạn đến với website của chúng tôi!";
+        </script>
+      </div>
+    
+      <!--  đăng nhập -->
+      <div class="section-box">
+        <h2>Form Đăng Nhập</h2>
+        <form onsubmit="loginUser(event)">
+          <label>Tên đăng nhập: <input type="text" id="username" required /></label><br/><br/>
+          <label>Mật khẩu: <input type="password" id="password" required /></label><br/><br/>
+          <button type="submit">Đăng nhập</button>
+          <p id="session-info" style="margin-top: 10px; font-weight: bold;"></p>
+          <button id="logout-btn" onclick="logoutUser()" style="display: none; margin-top: 10px;">Đăng xuất</button>
+        </form>
+        <p id="login-message"></p>
+    
+        <script>
+            function generateToken() {
+              return Math.random().toString(36).substr(2) + Date.now().toString(36);
+            }
+          
+            function loginUser(event) {
+              event.preventDefault();
+              const user = document.getElementById('username').value;
+              const pass = document.getElementById('password').value;
+          
+              let message = '';
+              if (user === 'chi123' && pass === '123@456') {
+                const token = generateToken();
+                sessionStorage.setItem('authToken', token);
+                sessionStorage.setItem('role', 'Admin');
+                message = 'Đăng nhập thành công với vai trò Admin!';
+              } else if (user === 'chi1234' && pass === '123@456@') {
+                const token = generateToken();
+                sessionStorage.setItem('authToken', token);
+                sessionStorage.setItem('role', 'Khách hàng');
+                message = 'Đăng nhập thành công với vai trò Khách hàng!';
+              } else {
+                message = 'Sai tài khoản hoặc mật khẩu.';
+              }
+          
+              document.getElementById('login-message').innerText = message;
+              checkSession(); // Cập nhật giao diện
+            }
+          
+            function logoutUser() {
+              sessionStorage.clear();
+              document.getElementById('login-message').innerText = 'Bạn đã đăng xuất.';
+              checkSession(); // Cập nhật lại giao diện
+            }
+          
+            function checkSession() {
+              const token = sessionStorage.getItem('authToken');
+              const role = sessionStorage.getItem('role');
+              const infoBox = document.getElementById('session-info');
+              const logoutBtn = document.getElementById('logout-btn');
+          
+              if (token) {
+                infoBox.innerText = `Token: ${token} | Vai trò: ${role}`;
+                logoutBtn.style.display = 'inline-block';
+              } else {
+                infoBox.innerText = 'Bạn chưa đăng nhập.';
+                logoutBtn.style.display = 'none';
+              }
+            }
+          
+            window.onload = checkSession;
+          </script>
+          
+          
+      </div>
+    
+      <!-- API giả lập -->
+      <div class="section-box">
+        <h2>API </h2>
+        <button onclick="getAPI()">Tải dữ liệu xuống</button>
+        <div id="api-result">Dữ liệu sẽ hiển thị ở đây</div>
+    
+        <script>
+          function getAPI() {
+            const fakeData =  "Dữ liệu đã được tải xuống!" 
+            document.getElementById("api-result").innerText = JSON.stringify(fakeData, null, 2);
+          }
+        </script>
+      </div>
+      <script>
+        function showMenuContent(type) {
+          const contentDiv = document.getElementById('menu-content');
+          let html = '';
+      
+          switch (type) {
+            case 'home':
+              html = `
+                <h3>Trang chủ</h3>
+                <p>Chào mừng bạn đến với website của chúng tôi!
+                   Rất vui khi được đồng hành cùng bạn trong hành trình khám phá và trải nghiệm những nội dung bổ ích, 
+                   thú vị tại đây. Chúng tôi luôn nỗ lực mang đến giao diện thân thiện, 
+                   thông tin chính xác và dịch vụ tốt nhất để đáp ứng nhu cầu của bạn. 
+                   Hãy cùng bắt đầu nhé!</p>
+              `;
+              break;
+            case 'about':
+              html = `
+                <h3>Giới thiệu</h3>
+                <table>
+                  <tr><th>Tiêu chí</th><th>Chi tiết</th></tr>
+                  <tr><td>Thông tin rõ ràng, minh bạch</td><td>Cung cấp đầy đủ thông tin về bất động sản: giá, diện tích, vị trí, pháp lý, tiện ích, hình ảnh thực tế.</td></tr>
+                  <tr><td>Tìm kiếm và lọc thông minh</td><td>Cho phép người dùng lọc theo khu vực, mức giá, loại hình, số phòng, hướng nhà,...</td></tr>
+                  <tr><td>Giao diện thân thiện</td><td>Hiển thị tốt trên cả máy tính, điện thoại và máy tính bảng.</td></tr>
+                  <tr><td>Hình ảnh và video chất lượng cao</td><td>Hình ảnh chân thực, sắc nét.Có video 360°, flycam hoặc video giới thiệu nếu có</td></tr>
+                  <tr><td>Tốc độ tải nhanh</td><td>Website cần được tối ưu để tải nhanh, nhất là khi chứa nhiều hình ảnh.</td></tr>
+                  <tr><td>Tích hợp bản đồ và dẫn đường</td><td>Tích hợp Google Maps hoặc bản đồ số.Có thể chỉ đường từ vị trí của người dùng.</td></tr>
+                  <tr><td>Cập nhật liên tục và tin cậy</td><td>Tin đăng cần có thời gian đăng/cập nhật.Loại bỏ tin cũ, tin đã bán để tránh gây nhầm lẫn.</td></tr>
+                  <tr><td>Bảo mật và uy tín</td><td>Có chính sách bảo mật thông tin khách hàng.Đảm bảo người dùng yên tâm khi để lại thông tin.</td></tr>
+                  <tr><td>Chức năng liên hệ,tư vấn nhanh</td><td>Nút gọi/zalo/email hiển thị rõ ràng.Hỗ trợ chatbot hoặc tư vấn viên trực tuyến nếu có.</td></tr>
+                  <tr><td>Quản lý tin đăng hiệu quả (dành cho người bán/cho thuê)</td><td>Cho phép người dùng đăng tin, chỉnh sửa, gia hạn.Có quản lý tài khoản cá nhân.</td></tr>
+                </table>
+              `;
+              break;
+            case 'contact':
+              html = `
+                <h3>Liên hệ</h3>
+                <p>Email: voquynhchi5576@gmail.com</p>
+                <p>Điện thoại: 0865715576</p>
+              `;
+              break;
+          }
+      
+          contentDiv.innerHTML = html;
+          contentDiv.style.display = 'block';
+          window.scrollTo({ top: contentDiv.offsetTop - 20, behavior: 'smooth' });
+        }
+      </script>
+      
+      
+</body>
+</html>
+
+
