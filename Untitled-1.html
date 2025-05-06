@@ -121,19 +121,14 @@
     </head>
 
     <!-- Menu  -->
-  <!-- Menu -->
-<div class="dropdown">
-  <button>Menu</button>
-  <div class="dropdown-content">
-    <a href="#" onclick="showMenuContent('home')">Trang chủ</a>
-    <a href="#" onclick="showMenuContent('about')">Giới thiệu</a>
-    <a href="#" onclick="showMenuContent('contact')">Liên hệ</a>
+  <div class="dropdown">
+    <button>Menu</button>
+    <div class="dropdown-content">
+      <a href="#">Trang chủ</a>
+      <a href="#">Giới thiệu</a>
+      <a href="#">Liên hệ</a>
+    </div>
   </div>
-</div>
-
-<!-- Vùng hiển thị nội dung menu động -->
-<div id="menu-content" class="section-box" style="display:none; margin-top: 20px;"></div>
-
 
     <div class="section-box">
         <h2>Hình ảnh SVG (Vector)</h2>
@@ -246,55 +241,6 @@
           }
         </script>
       </div>
-      <script>
-        function showMenuContent(type) {
-          const contentDiv = document.getElementById('menu-content');
-          let html = '';
-      
-          switch (type) {
-            case 'home':
-              html = `
-                <h3>Trang chủ</h3>
-                <p>Chào mừng bạn đến với website của chúng tôi!
-                   Rất vui khi được đồng hành cùng bạn trong hành trình khám phá và trải nghiệm những nội dung bổ ích, 
-                   thú vị tại đây. Chúng tôi luôn nỗ lực mang đến giao diện thân thiện, 
-                   thông tin chính xác và dịch vụ tốt nhất để đáp ứng nhu cầu của bạn. 
-                   Hãy cùng bắt đầu nhé!</p>
-              `;
-              break;
-            case 'about':
-              html = `
-                <h3>Giới thiệu</h3>
-                <table>
-                  <tr><th>Tiêu chí</th><th>Chi tiết</th></tr>
-                  <tr><td>Thông tin rõ ràng, minh bạch</td><td>Cung cấp đầy đủ thông tin về bất động sản: giá, diện tích, vị trí, pháp lý, tiện ích, hình ảnh thực tế.</td></tr>
-                  <tr><td>Tìm kiếm và lọc thông minh</td><td>Cho phép người dùng lọc theo khu vực, mức giá, loại hình, số phòng, hướng nhà,...</td></tr>
-                  <tr><td>Giao diện thân thiện</td><td>Hiển thị tốt trên cả máy tính, điện thoại và máy tính bảng.</td></tr>
-                  <tr><td>Hình ảnh và video chất lượng cao</td><td>Hình ảnh chân thực, sắc nét.Có video 360°, flycam hoặc video giới thiệu nếu có</td></tr>
-                  <tr><td>Tốc độ tải nhanh</td><td>Website cần được tối ưu để tải nhanh, nhất là khi chứa nhiều hình ảnh.</td></tr>
-                  <tr><td>Tích hợp bản đồ và dẫn đường</td><td>Tích hợp Google Maps hoặc bản đồ số.Có thể chỉ đường từ vị trí của người dùng.</td></tr>
-                  <tr><td>Cập nhật liên tục và tin cậy</td><td>Tin đăng cần có thời gian đăng/cập nhật.Loại bỏ tin cũ, tin đã bán để tránh gây nhầm lẫn.</td></tr>
-                  <tr><td>Bảo mật và uy tín</td><td>Có chính sách bảo mật thông tin khách hàng.Đảm bảo người dùng yên tâm khi để lại thông tin.</td></tr>
-                  <tr><td>Chức năng liên hệ,tư vấn nhanh</td><td>Nút gọi/zalo/email hiển thị rõ ràng.Hỗ trợ chatbot hoặc tư vấn viên trực tuyến nếu có.</td></tr>
-                  <tr><td>Quản lý tin đăng hiệu quả (dành cho người bán/cho thuê)</td><td>Cho phép người dùng đăng tin, chỉnh sửa, gia hạn.Có quản lý tài khoản cá nhân.</td></tr>
-                </table>
-              `;
-              break;
-            case 'contact':
-              html = `
-                <h3>Liên hệ</h3>
-                <p>Email: voquynhchi5576@gmail.com</p>
-                <p>Điện thoại: 0865715576</p>
-              `;
-              break;
-          }
-      
-          contentDiv.innerHTML = html;
-          contentDiv.style.display = 'block';
-          window.scrollTo({ top: contentDiv.offsetTop - 20, behavior: 'smooth' });
-        }
-      </script>
-      
       
 </body>
 </html>
